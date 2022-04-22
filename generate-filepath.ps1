@@ -2,7 +2,8 @@
 function Generate-ExplorerHTML {
     param(
         $path = "./",
-        $ext = ("*.mp3","*.wav")
+        $ext = ("*.mp3","*.wav"),
+        $outfile = "index.html"
     )
     $filePath = Get-ChildItem $PSScriptRoot -Depth 100 -File -Include $ext | % { (Resolve-Path -Relative $_.FullName) -replace "\\","/" }
 
@@ -25,5 +26,5 @@ function Generate-ExplorerHTML {
 </body>
 </html>
 "@
-    $html_template > explorer.html
+    $html_template > $outfile
 }
